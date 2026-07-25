@@ -1,0 +1,14 @@
+[Unit]
+Description=tgtagbot — расписание: среда и воскресенье
+
+[Timer]
+OnCalendar=Wed,Sun 12:00
+Timezone=Europe/Moscow
+# Если сервер был выключен в это время — догоним при загрузке. Сработает только
+# если это всё ещё нужный день недели: send.py проверяет день сам.
+Persistent=true
+AccuracySec=1min
+Unit=tgtagbot-send.service
+
+[Install]
+WantedBy=timers.target

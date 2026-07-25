@@ -1,0 +1,22 @@
+[Unit]
+Description=tgtagbot — приём /start и регистрация получателей
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=tgtagbot
+Group=tgtagbot
+WorkingDirectory=/opt/tgtagbot
+ExecStart=/opt/tgtagbot/.venv/bin/python /opt/tgtagbot/listen.py
+Restart=always
+RestartSec=5
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/tgtagbot
+
+[Install]
+WantedBy=multi-user.target

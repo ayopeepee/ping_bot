@@ -1,0 +1,12 @@
+# Локальное состояние — только в корне. state/state.json, наоборот, коммитится:
+# в GitHub Actions это единственный способ помнить last_sent между запусками.
+/state.json
+/state.json.tmp
+/state.json.broken
+state/*.tmp
+state/*.broken
+
+.env
+.venv/
+__pycache__/
+*.pyc

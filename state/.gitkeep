@@ -1,0 +1,2 @@
+# Здесь GitHub Actions хранит state.json между запусками (отметки last_sent).
+# Локальный state.json лежит в корне проекта и в git не попадает.

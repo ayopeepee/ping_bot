@@ -1,0 +1,17 @@
+[Unit]
+Description=tgtagbot — отправка запланированного сообщения
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=tgtagbot
+Group=tgtagbot
+WorkingDirectory=/opt/tgtagbot
+ExecStart=/opt/tgtagbot/.venv/bin/python /opt/tgtagbot/send.py
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/tgtagbot

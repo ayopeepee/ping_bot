@@ -1,0 +1,12 @@
+# Вариант для cron вместо systemd timer: crontab -e -u tgtagbot
+# 3 = среда, 0 = воскресенье.
+CRON_TZ=Europe/Moscow
+0 12 * * 3,0 cd /opt/tgtagbot && .venv/bin/python send.py >> /var/log/tgtagbot-send.log 2>&1
+
+# CRON_TZ понимают cronie и Debian/Ubuntu cron. Если ваш cron его игнорирует —
+# пересчитайте время в UTC (12:00 MSK = 09:00 UTC) и уберите строку CRON_TZ.
+# TIMEZONE в .env при этом не меняйте: send.py по нему проверяет день недели.
+
+# Слушателю /start cron не нужен, но сам процесс должен где-то жить:
+# либо tgtagbot-listen.service, либо, если systemd нет:
+# @reboot cd /opt/tgtagbot && nohup .venv/bin/python listen.py >> /var/log/tgtagbot-listen.log 2>&1 &
